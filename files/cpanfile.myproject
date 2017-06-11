@@ -1,0 +1,10 @@
+# cpanfile example (see vars/*yml perl5_modules_build_dependencies for OS packages needed)
+#
+#requires 'App::Daemon', '0.18';
+#requires 'Archive::Any';
+#requires 'CHI';
+#requires 'CHI::Driver::Memcached::libmemcached';
+#requires 'Cache::Memcached';
+#requires 'Cache::Memcached::Fast';
+#requires 'Cache::Memcached::libmemcached';
+

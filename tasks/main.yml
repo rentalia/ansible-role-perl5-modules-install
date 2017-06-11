@@ -1,0 +1,41 @@
+---
+# tasks file for perl5-modules-install
+
+- name: set distro-specific variables
+  include_vars: '{{ item }}'
+  with_first_found:
+   - '{{ ansible_os_family }}.yml'
+  tags: perl5_modules
+
+- name: install packages needed for building perl modules (yum)
+  yum: name={{ item }} state=installed
+  with_items: "{{ perl5_modules_build_dependencies }}"
+  when: 
+   - ansible_os_family == 'RedHat'
+  tags: perl5_modules
+
+- name: install packages needed for building perl modules (apt)
+  apt: name={{ item }} state=installed update_cache=yes cache_valid_time=3600
+  with_items: "{{ perl5_modules_build_dependencies }}"
+  when: 
+    - ansible_os_family == 'Debian'
+  tags: perl5_modules
+
+- name: install cpanfile
+  copy: src="{{ cpanfile }}" dest="{{ perl5_real_path }}/cpanfile"
+  tags: perl5_modules
+
+- name: install perl modules ( cpanminus )
+  command: "{{ perl5_real_path }}/bin/perl {{ perl5_real_path }}/bin/cpanm --configure-timeout {{ cpanm_configure_timeout }} --build-timeout {{ cpanm_build_timeout }} --test-timeout {{ cpanm_test_timeout }} {{ cpanm_options }} ."
+  args:
+    chdir: "{{ perl5_real_path }}"
+  when: perl5_package_manager == "cpanm"
+  tags: perl5_modules
+
+- name: install perl modules ( cpm, *experimental* )
+  command: "{{ perl5_real_path }}/bin/perl {{ perl5_real_path }}/bin/cpm install --local-lib-contained={{ perl5_real_path }} --workers={{ cpm_workers }} {{ cpm_options }}"
+  args:
+    chdir: "{{ perl5_real_path }}"
+  when: perl5_package_manager == "cpm"
+  tags: perl5_modules
+

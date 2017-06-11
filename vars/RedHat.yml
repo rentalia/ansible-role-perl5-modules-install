@@ -1,0 +1,14 @@
+---
+# Red Hat family vars file for perl5-modules-install
+#
+# example RHEL packages needed by modules in cpanfile
+#perl5_modules_build_dependencies:
+#  - gcc-c++
+#  - libmemcached-devel
+#  - zlib-devel
+#  - expat-devel
+#  - libxml2-devel
+#  - xz-devel
+#  - postgresql-devel
+#  - openssl-devel
+#  - libcurl-devel

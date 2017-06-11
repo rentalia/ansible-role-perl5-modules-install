@@ -1,0 +1,21 @@
+  author: frantsao
+  description: perl5 modules custom build and install
+  company: Rentalia S.L.U.
+  license: GPLv3
+  min_ansible_version: 2.1
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - 8
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags: 
+    - perl
+    - installer

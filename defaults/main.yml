@@ -1,0 +1,14 @@
+---
+# defaults file for perl5-modules-install
+cpanfile: cpanfile.myproject
+perl5_version: "5.24.0"
+perl5_name: "perl-{{ perl5_version }}"
+stow_dir: /usr/local/stow
+perl5_real_path: "{{ stow_dir }}/{{ perl5_name }}"
+perl5_package_manager: "cpanm"
+cpanm_configure_timeout: 60
+cpanm_build_timeout: 3600
+cpanm_test_timeout: 1800 
+cpm_workers: 4
+cpanm_options: "-n --installdeps"
+cpm_options: ""
