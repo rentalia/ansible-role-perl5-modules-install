@@ -16,7 +16,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - xenial
   galaxy_tags: 
     - perl
     - installer
