@@ -8,14 +8,14 @@
   tags: perl5_modules
 
 - name: install packages needed for building perl modules (yum)
-  yum: name={{ item }} state=installed
+  yum: name={{ item }} state=present
   with_items: "{{ perl5_modules_build_dependencies }}"
   when: 
    - ansible_os_family == 'RedHat'
   tags: perl5_modules
 
 - name: install packages needed for building perl modules (apt)
-  apt: name={{ item }} state=installed update_cache=yes cache_valid_time=3600
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_items: "{{ perl5_modules_build_dependencies }}"
   when: 
     - ansible_os_family == 'Debian'
