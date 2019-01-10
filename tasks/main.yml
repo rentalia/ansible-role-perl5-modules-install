@@ -30,6 +30,10 @@
   args:
     chdir: "{{ perl5_real_path }}"
   when: perl5_package_manager == "cpanm"
+  register: result
+  until: result.rc == 0
+  retries: 1
+  delay: 5
   tags: perl5_modules
 
 - name: install perl modules ( cpm, *experimental* )
